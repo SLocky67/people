@@ -13,8 +13,7 @@ public class Main {
                     families.get(new Random().nextInt(families.size())),
                     new Random().nextInt(100),
                     Sex.values()[new Random().nextInt(Sex.values().length)],
-                    Education.values()[new Random().nextInt(Education.values().length)])
-            );
+                    Education.values()[new Random().nextInt(Education.values().length)]));
         }
 
         //кол-во несовершеннолетних
@@ -36,8 +35,8 @@ public class Main {
         List<String> stream3 = persons.stream()
                 .filter(person -> person.getEducation() == Education.HIGHER)
                 .filter(person -> person.getAge() >= 18)
-                .filter(person -> person.getSex() == Sex.MAN && person.getAge() <= 65)
-                .filter(person -> person.getSex() == Sex.WOMAN && person.getAge() <= 60)
+                .filter(person -> (person.getSex() == (Sex.WOMAN) && person.getAge() < 60)
+                        || (person.getSex() == (Sex.MAN) && person.getAge() < 65))
                 .map(Person::getFamily) // получаем фамилии
                 .sorted(Comparator.comparing(String::toLowerCase))
                 .collect(Collectors.toList());
